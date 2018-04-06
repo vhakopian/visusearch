@@ -8,10 +8,23 @@ Created on Thu Apr  5 17:35:15 2018
 
 WEEK = 60*60*24*7
 
-def words_list (queries):
-    l = []
+def words_dictionnary (queries):
+    dict = {}
     for q in queries:
-        l = l + q.split(" ")
+        words = q.split(" ")
+        
+        for word in words:
+            if word in dict:
+                dict[word] += 1
+            else:
+                dict[word] = 1
+            
+    return dict
+
+def sort_dictionnary(dictionnary):
+    l = []
+    for word in sorted(dictionnary, key=dictionnary.get, reverse=True):
+        l.append((word, dictionnary[word]))
     return l
 
 def time_standardization(time_list):

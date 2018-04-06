@@ -16,7 +16,7 @@ def plot(count_weeks, count_months, time_min, time_max):
     fig = plt.figure(figsize=(8, 6))
     ax = plt.subplot(111)
     
-    plt.title("Nombre de recherche par semaine", fontsize=14, ha="center")  
+    plt.title("Number of searches by week", fontsize=14, ha="center")  
     
     fig.patch.set_facecolor('white')
     
@@ -58,8 +58,6 @@ def main():
     
     time_min = min(time_list)
     time_max = max(time_list)
-    
-    
     
     count_weeks = processing.count_searchs_week(time_list, time_min, time_max)
     count_months = processing.count_searchs_month(time_list, time_min, time_max)

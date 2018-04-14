@@ -3,6 +3,7 @@ import processing
 import numpy as np
 import pandas as pd
 
+
 def load_file(filename):
     
     file  = open(filename, "r", encoding='utf-8')
@@ -10,20 +11,20 @@ def load_file(filename):
     
     data = data['event']
     
-    timeList = []
-    queryList =[]
+    time_list = []
+    query_list =[]
     
     for line in data:
         (time, query) = (int(line['query']['id'][0]['timestamp_usec']),line['query']['query_text'])
-        timeList.append(time)
-        queryList.append(query)
+        time_list.append(time)
+        query_list.append(query)
         
     file.close()
     
-    timeList = processing.time_standardization(timeList)
-    timeList = np.array(timeList,dtype='datetime64[s]')
+    processing.time_standardization(time_list)
+    time_list = np.array(time_list,dtype='datetime64[s]')
     
-    dataframe = pd.DataFrame(queryList, index = timeList, columns = ["query"])
+    dataframe = pd.DataFrame(query_list, index = time_list, columns = ["query"])
     
     return dataframe
 
@@ -31,16 +32,20 @@ def load_file(filename):
 
 def load_dataset():
     
-    dataframeList = []
+    dataframe_list = []
     
     for i in range(1,28):
         dataframe = load_file("/Users/vahagn/Projets d\'informatique/Visusearch project/searchs/"+str(i)+".json")
-        dataframeList.append(dataframe)
+        dataframe_list.append(dataframe)
         
-    dataframe = pd.concat(dataframeList)
+    dataframe = pd.concat(dataframe_list)
     dataframe = dataframe.sort_index()
     
-    dataframe["numberQuery"]= 1
-    dataframe["numberWords"] = list(map(lambda x : len(x.split(" ")), dataframe["query"].values))
-
     return dataframe
+
+
+def save_dataframe(dataframe, path):
+    dataframe.to_csv(path)
+    
+def load_dataframe(path):
+    return pd.DataFrame.from_csv(path)

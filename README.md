@@ -1,5 +1,5 @@
 # VisuSearch
-This project aims to build a tool for extracting, processing and visualizing personnal Google search data.
+This project aims to build a tool for extracting, processing and visualizing personal Google search data.
 
 ## Getting Started
 

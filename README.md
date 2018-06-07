@@ -22,4 +22,4 @@ SEARCHS_DIRECTORY = /Users/USER/visusearch 
 
 ## Authors
 
-* **Vahagn Hakopian** - [vahagnh](https://github.com/vahagnh)
+* **Vahagn Hakopian** - [vhakopian](https://github.com/vhakopian)
